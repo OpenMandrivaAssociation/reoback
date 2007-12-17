@@ -11,7 +11,6 @@ Group: Archiving/Backup
 BuildArchitectures: noarch
 Requires: perl grep vixie-cron perl-libnet tar gzip
 Source: http://prdownloads.sourceforge.net/reoback/%{name}-%{srcver}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}
 
 %description
 Pronounced as "Ray-o-back", REOBack is a simple backup solution designed
