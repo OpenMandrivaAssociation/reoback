@@ -4,7 +4,7 @@
 Summary: A simple backup solution
 Name: reoback
 Version: 1.0.3
-Release: %mkrel 6
+Release: %mkrel 7
 License: GPL
 URL: http://reoback.sourceforge.net/
 Group: Archiving/Backup
