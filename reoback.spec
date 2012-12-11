@@ -99,3 +99,43 @@ rm -rf $RPM_BUILD_ROOT
 /var/lib/reoback
 %{_bindir}/*
 
+
+
+%changelog
+* Tue Sep 08 2009 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-8mdv2010.0
++ Revision: 433333
+- rebuild
+
+* Fri Aug 01 2008 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-7mdv2009.0
++ Revision: 260212
+- rebuild
+
+* Fri Jul 25 2008 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-6mdv2009.0
++ Revision: 248368
+- rebuild
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Mon Dec 17 2007 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-4mdv2008.1
++ Revision: 126567
+- kill re-definition of %%buildroot on Pixel's request
+- use %%mkrel
+- import reoback
+
+
+* Mon Jan 10 2005 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-4mdk
+- fix URL
+
+* Sun Jan  9 2005 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-3mdk
+- allow to have UNKNOWN in a comment
+
+* Wed Aug  6 2003 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-2mdk
+- rebuild
+
+* Mon Mar 25 2002 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-1mdk
+- removed patch0 integrated upstream
+- 1.0.3
+
+* Wed Aug 22 2001 Frederic Lepied <flepied@mandrakesoft.com> 1.0-1mdk
+- first Mandrake Linux release
