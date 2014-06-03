@@ -1,17 +1,21 @@
 %define srcver 1.0_r3
 %define tarver 1.0
 
-Summary: A simple backup solution
-Name: reoback
-Version: 1.0.3
-Release: %mkrel 8
-License: GPL
-URL: http://reoback.sourceforge.net/
-Group: Archiving/Backup
-BuildArchitectures: noarch
-Requires: perl grep vixie-cron perl-libnet tar gzip
-Source: http://prdownloads.sourceforge.net/reoback/%{name}-%{srcver}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}
+Summary:	A simple backup solution
+Name:		reoback
+Version:	1.0.3
+Release:	9
+License:	GPL
+URL:		http://reoback.sourceforge.net/
+Group:		Archiving/Backup
+BuildArch:	noarch
+Requires:	perl
+Requires:	grep
+Requires:	vixie-cron
+Requires:	perl-libnet
+Requires:	bsdtar
+Requires:	gzip
+Source:		http://prdownloads.sourceforge.net/reoback/%{name}-%{srcver}.tar.bz2
 
 %description
 Pronounced as "Ray-o-back", REOBack is a simple backup solution designed
@@ -23,18 +27,17 @@ procrastinate about backups.
 %setup -q -n %name-%tarver
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT%{_bindir}
-mkdir -p $RPM_BUILD_ROOT/etc/reoback
-mkdir -p $RPM_BUILD_ROOT/etc/cron.daily
-mkdir -p $RPM_BUILD_ROOT%{_mandir}/man1
-mkdir -p $RPM_BUILD_ROOT/var/lib/reoback/{data,backups,tmp}
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}/etc/reoback
+mkdir -p %{buildroot}/etc/cron.daily
+mkdir -p %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}/var/lib/reoback/{data,backups,tmp}
 
-install reoback.pl $RPM_BUILD_ROOT%{_bindir}
+install reoback.pl %{buildroot}%{_bindir}
 
-install -m 644 docs/man/*.* $RPM_BUILD_ROOT%{_mandir}/man1
+install -m 644 docs/man/*.* %{buildroot}%{_mandir}/man1
 
-cat > $RPM_BUILD_ROOT/etc/reoback/files.conf << EOF
+cat > %{buildroot}/etc/reoback/files.conf << EOF
 ############################################################################
 # REOBack Simple Backup Solution
 # http://sourceforge.net/projects/reoback/
@@ -69,11 +72,11 @@ cat > $RPM_BUILD_ROOT/etc/reoback/files.conf << EOF
 # Note we can also include seperate files, not just directories
 #/var/www/docs/hugedoc.txt
 EOF
-chmod 644 $RPM_BUILD_ROOT/etc/reoback/files.conf
+chmod 644 %{buildroot}/etc/reoback/files.conf
 
-install -m 600 conf/settings.conf $RPM_BUILD_ROOT/etc/reoback/
+install -m 600 conf/settings.conf %{buildroot}/etc/reoback/
 
-cat > $RPM_BUILD_ROOT/etc/cron.daily/reoback << EOF
+cat > %{buildroot}/etc/cron.daily/reoback << EOF
 #!/bin/sh
 
 # check if all is configured
@@ -84,13 +87,10 @@ if [ \$? != 0 ]; then
 fi
 
 EOF
-chmod 755 $RPM_BUILD_ROOT/etc/cron.daily/reoback
+chmod 755 %{buildroot}/etc/cron.daily/reoback
 
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root)
 %doc docs/{CHANGES,INSTALL,README,LICENSE}
 %{_mandir}/man1/*
 %dir /etc/reoback
@@ -98,44 +98,3 @@ rm -rf $RPM_BUILD_ROOT
 /etc/cron.daily/reoback
 /var/lib/reoback
 %{_bindir}/*
-
-
-
-%changelog
-* Tue Sep 08 2009 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-8mdv2010.0
-+ Revision: 433333
-- rebuild
-
-* Fri Aug 01 2008 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-7mdv2009.0
-+ Revision: 260212
-- rebuild
-
-* Fri Jul 25 2008 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-6mdv2009.0
-+ Revision: 248368
-- rebuild
-
-  + Olivier Blin <oblin@mandriva.com>
-    - restore BuildRoot
-
-* Mon Dec 17 2007 Thierry Vignaud <tvignaud@mandriva.com> 1.0.3-4mdv2008.1
-+ Revision: 126567
-- kill re-definition of %%buildroot on Pixel's request
-- use %%mkrel
-- import reoback
-
-
-* Mon Jan 10 2005 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-4mdk
-- fix URL
-
-* Sun Jan  9 2005 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-3mdk
-- allow to have UNKNOWN in a comment
-
-* Wed Aug  6 2003 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-2mdk
-- rebuild
-
-* Mon Mar 25 2002 Frederic Lepied <flepied@mandrakesoft.com> 1.0.3-1mdk
-- removed patch0 integrated upstream
-- 1.0.3
-
-* Wed Aug 22 2001 Frederic Lepied <flepied@mandrakesoft.com> 1.0-1mdk
-- first Mandrake Linux release
