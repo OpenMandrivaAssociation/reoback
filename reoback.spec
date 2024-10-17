@@ -6,7 +6,7 @@ Name:		reoback
 Version:	1.0.3
 Release:	10
 License:	GPL
-URL:		http://reoback.sourceforge.net/
+URL:		https://reoback.sourceforge.net/
 Group:		Archiving/Backup
 BuildArch:	noarch
 Requires:	perl
